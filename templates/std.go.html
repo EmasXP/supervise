@@ -1,0 +1,17 @@
+{{ template "before" . }}
+
+<div class="wide-container">
+	<h1>{{ .pipe }}: {{ .program  }}</h1>
+	<form method="get">
+		<label>
+			Showing last
+		</label>
+		<input type="number" name="size" value="{{ .numBytes }}" step="1">
+		bytes
+		<button>Submit</button>
+	</form>
+	<hr>
+	<pre>{{ .std }}</pre>
+</div>
+
+{{ template "after" . }}

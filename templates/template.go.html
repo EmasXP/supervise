@@ -1,0 +1,24 @@
+{{ define "before" }}
+<!doctype html>
+<html>
+	<head>
+		<title>Supervise</title>
+		<meta name="viewport" content="width=device-width">
+		<script src="/static/js/jquery-3.7.1.min.js"></script>
+		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<a href="/" id="header">
+			Supervise
+		</a>
+		{{ if .flashMessage }}
+			<div class="flash flash-{{ .flashMessageType }}">
+				{{ .flashMessage }}
+			</div>
+		{{ end }}
+{{ end }}
+
+{{ define "after" }}
+	</body>
+</html>
+{{ end }}

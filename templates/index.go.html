@@ -1,0 +1,116 @@
+{{ template "before" . }}
+
+<div class="narrow-container">
+
+	<table>
+		<thead>
+			<tr>
+				<th>Program</th>
+				<th>Status</th>
+				<th>Info</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{ range $entry := .entries }}
+			<tr>
+				<td>
+					{{ $entry.Program }}
+				</td>
+				<td class="status-{{ $entry.Status }}">
+					{{ $entry.Status }}
+				</td>
+				<td>
+					{{ $entry.Info }}
+				</td>
+				<td style="text-align: right">
+					{{ if or (eq $entry.Status "STOPPED") (eq $entry.Status "EXITED") (eq $entry.Status "FATAL") }}
+						<button class="button-green start-program" data-name="{{ $entry.Program }}">Start</button>
+					{{ else if eq $entry.Status "RUNNING" }}
+						<button class="button-blue restart-program" data-name="{{ $entry.Program }}">Restart</button>
+						<button class="button-red stop-program"  data-name="{{ $entry.Program }}">Stop</button>
+					{{ end }}
+					<a href="/stdout/{{ $entry.Program }}">Stdout</a>
+					<a href="/stderr/{{ $entry.Program }}">Stderr</a>
+				</td>
+			</tr>
+			{{ end }}
+		</tbody>
+	</table>
+
+</div>
+
+<script>
+	$(".start-program").click(function(){
+		var name = $(this).data("name");
+		var message = "Are you sure that you want to start the program "+name+"?";
+		if ( ! confirm(message))
+		{
+			return;
+		}
+		post_request(
+			"/start",
+			{
+				program: name
+			}
+		);
+	});
+
+	$(".restart-program").click(function(){
+		var name = $(this).data("name");
+		var message = "Are you sure that you want to restart the program "+name+"?";
+		if ( ! confirm(message))
+		{
+			return;
+		}
+		post_request(
+			"/restart",
+			{
+				program: name
+			}
+		);
+	});
+
+	$(".stop-program").click(function(){
+		var name = $(this).data("name");
+		var message = "Are you sure that you want to stop the program "+name+"?";
+		if ( ! confirm(message))
+		{
+			return;
+		}
+		post_request(
+			"/stop",
+			{
+				program: name
+			}
+		);
+	});
+
+	function post_request(url, params)
+	{
+		var $form = $("<form />")
+			.prop("method", "POST")
+			.prop("action", url);
+
+		if (params)
+		{
+			for (var key in params)
+			{
+				var value = params[key];
+				$form.append(
+					$("<input />")
+						.prop("type", "hidden")
+						.prop("name", key)
+						.prop("value", value)
+				);
+			}
+		}
+
+		$("body").append($form);
+
+		$form.submit();
+	}
+
+</script>
+
+{{ template "after" . }}

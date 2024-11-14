@@ -1,0 +1,147 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	color: black;
+	background: white;
+}
+
+body, p {
+	font-family: sans-serif;
+}
+
+#header {
+	background: #eee;
+	border-bottom: 0.25em solid #467cb6;
+	padding: 0.5em;
+	font-size: 1.22em;
+	text-align: center;
+	color: black;
+	display: block;
+}
+#header:hover {
+	text-decoration: none;
+}
+
+.narrow-container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1em 0;
+	box-sizing: border-box;
+}
+
+.wide-container {
+	width: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+}
+
+.wide-container h1:first-child{
+	margin-top: 0.25em;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 0;
+	margin: 0;
+}
+
+table td, table th {
+	text-align: left;
+	padding: 0.2em 0.4em;
+}
+
+table tbody tr:hover {
+	background: #eee;
+}
+
+a, a:visited {
+	color: #2b60a4;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+.status-STOPPED {
+	color: #928132;
+}
+.status-RUNNING {
+	color: #329253;
+}
+.status-FATAL {
+	color: #a51b24;
+}
+.status-EXITED, .status-BACKOFF {
+	color: #923246;
+}
+
+button, input[type="button"], input[type="submit"] {
+	border: 0;
+	margin: 0;
+	font-size: 0.8em;
+	padding: 0.25em 0.5em;
+	cursor: pointer;
+	border-radius: 0.2em;
+}
+
+.button-green {
+	color: white;
+	background: #5bad77;
+}
+.button-green:hover {
+	background: #329253;
+}
+
+.button-blue {
+	color: white;
+	background: #5884bc;
+}
+.button-blue:hover {
+	background: #2b60a4;
+}
+
+.button-red {
+	color: white;
+	background: #bc4a50;
+}
+.button-red:hover {
+	background: #a51b24;
+}
+
+.button-yellow {
+	color: white;
+	background: #ada05b;
+}
+.button-yellow:hover {
+	background: #928132;
+}
+
+.flash {
+	text-align: center;
+	margin: 0.4em;
+	padding: 0.6em;
+	border-radius: 0.2em;
+}
+.flash-success {
+	background: #ceecd8;
+	border: 0.1em solid #5bad77;
+	color: #329253;
+}
+.flash-error {
+	background: #f1c9ca;
+	border: 0.1em solid #bc4a50;
+	color: #a51b24;
+}
+.flash-info {
+	background: #cdddf1;
+	border: 0.1em solid #5884bc;
+	color: #2b60a4;
+}
+
+hr {
+	border: 0;
+	height: 0.1em;
+	background: #ddd;
+}
