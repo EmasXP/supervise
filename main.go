@@ -40,8 +40,8 @@ func build(isDev bool, accounts gin.Accounts) *gin.Engine {
 	}
 
 	r.GET("/", GetIndex)
-	r.GET("/stdout/:program", GetStd("stdout"))
-	r.GET("/stderr/:program", GetStd("stderr"))
+	r.GET("/stdout/:program", GetStd("", "Stdout"))
+	r.GET("/stderr/:program", GetStd("stderr", "Stderr"))
 	r.POST("/start", ManageAction("start"))
 	r.POST("/restart", ManageAction("restart"))
 	r.POST("/stop", ManageAction("stop"))

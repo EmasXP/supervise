@@ -29,7 +29,7 @@ func GetIndex(c *gin.Context) {
 	})
 }
 
-func GetStd(pipe string) gin.HandlerFunc {
+func GetStd(pipe, name string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		program := c.Param("program")
 
@@ -44,7 +44,7 @@ func GetStd(pipe string) gin.HandlerFunc {
 
 		std, _, _ := getTailRaw(program, pipe, numBytes)
 		c.HTML(http.StatusOK, "std.go.html", gin.H{
-			"pipe":     pipe,
+			"pipe":     name,
 			"std":      std,
 			"program":  program,
 			"numBytes": numBytes,
