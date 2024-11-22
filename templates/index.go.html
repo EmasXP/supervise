@@ -24,10 +24,13 @@
 					{{ $entry.Info }}
 				</td>
 				<td style="text-align: right">
-					{{ if or (eq $entry.Status "STOPPED") (eq $entry.Status "EXITED") (eq $entry.Status "FATAL") }}
+					{{ if or (eq $entry.Status "STOPPED") (eq $entry.Status "EXITED") (eq $entry.Status "FATAL") (eq $entry.Status "BACKOFF") }}
 						<button class="button-green start-program" data-name="{{ $entry.Program }}">Start</button>
-					{{ else if eq $entry.Status "RUNNING" }}
+					{{ end }}
+					{{ if eq $entry.Status "RUNNING" }}
 						<button class="button-blue restart-program" data-name="{{ $entry.Program }}">Restart</button>
+					{{ end }}
+					{{ if or (eq $entry.Status "RUNNING") (eq $entry.Status "STARTING") }}
 						<button class="button-red stop-program"  data-name="{{ $entry.Program }}">Stop</button>
 					{{ end }}
 					<a href="/stdout/{{ $entry.Program }}">Stdout</a>
