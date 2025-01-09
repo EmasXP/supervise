@@ -44,7 +44,8 @@ func GetStd(pipe, name string) gin.HandlerFunc {
 
 		std, _, _ := getTailRaw(program, pipe, numBytes)
 		c.HTML(http.StatusOK, "std.go.html", gin.H{
-			"pipe":     name,
+			"pipe":     pipe,
+			"pipeName": name,
 			"std":      std,
 			"program":  program,
 			"numBytes": numBytes,

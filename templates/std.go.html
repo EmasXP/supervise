@@ -1,7 +1,7 @@
 {{ template "before" . }}
 
 <div class="wide-container">
-	<h1>{{ .pipe }}: {{ .program  }}</h1>
+	<h1>{{ .pipeName }}: {{ .program  }}</h1>
 	<form method="get">
 		<label>
 			Showing last
@@ -9,6 +9,9 @@
 		<input type="number" name="size" value="{{ .numBytes }}" step="1">
 		bytes
 		<button>Submit</button>
+		|
+		<a href="/stdout/{{ .program }}" {{ if eq .pipe "" }}style="font-weight: bold"{{ end }}>Stdout</a>
+		<a href="/stderr/{{ .program }}" {{ if eq .pipe "stderr" }}style="font-weight: bold"{{ end }}>Stderr</a>
 	</form>
 	<hr>
 	<pre>{{ .std }}</pre>
